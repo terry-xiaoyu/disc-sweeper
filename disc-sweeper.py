@@ -33,6 +33,9 @@ MIN_FREE_PERCENT = 10
 #  will be created if not exists
 PATH_LOGS = "/data/disc-sweeper"
 
+# EMAIL_SMTP_SERVER is your SMTP server
+EMAIL_SMTP_SERVER = 'smtp.163.com'
+
 # EMAIL_ACCOUNT is your account to be used by this script for sending the email
 EMAIL_ACCOUNT = "xxxxxx@163.com"
 
@@ -41,7 +44,7 @@ EMAIL_ACCOUNT = "xxxxxx@163.com"
 #  if you use 163 to send your email, plz set the 'authorization code' first, and use it as your password
 EMAIL_PASSWD = "your-password"
 
-def sendTo163(fromaddr, toaddrs, subject, body):
+def sendToEmail(fromaddr, toaddrs, subject, body):
     account = EMAIL_ACCOUNT
     password = EMAIL_PASSWD
 
@@ -54,7 +57,7 @@ def sendTo163(fromaddr, toaddrs, subject, body):
     text = msg.as_string()
 
     # login your smtp server using your account
-    server = smtplib.SMTP_SSL('smtp.163.com', 587, timeout=15)
+    server = smtplib.SMTP_SSL(EMAIL_SMTP_SERVER, 587, timeout=15)
     server.login(account, password)
 
     # send the email and logout
@@ -109,7 +112,7 @@ System adminstrators:
         min_free_percent = MIN_FREE_PERCENT
     )
 
-    sendTo163(fromaddr, toaddr, subject, body)
+    sendToEmail(fromaddr, toaddr, subject, body)
 
 
 def cleanDisc(path, mtime):
