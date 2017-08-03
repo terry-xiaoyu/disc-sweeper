@@ -1,5 +1,5 @@
 ## disc-sweeper
-This is a small python script used to clean expired files on your server, if it there's no enough disk space.
+This is a small python script used to clean expired files on your server, if there is no enough disk space.
 
 It uses following linux command to clean your server.
 ```shell
